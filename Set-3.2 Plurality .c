@@ -1,0 +1,104 @@
+#include <cs50.h>
+#include <stdio.h>
+#include <string.h>
+
+// Max number of candidates
+#define MAX 9
+
+// Candidates have name and vote count
+typedef struct
+{
+    string name;
+    int votes;
+}
+candidate;
+
+// Array of candidates
+candidate candidates[MAX];  // Max amount of "Candidates" is MAX
+
+// Number of candidates
+int candidate_count;
+
+// Function prototypes
+bool vote(string name);
+void print_winner(void);
+
+int main(int argc, string argv[])
+{
+    // Check for invalid usage
+    if (argc < 2)   // argv[0] is "./plurality" , argv[1] is "bob" so if its ONLY < 2, there is ONLY 1 candidate
+                    // hence invalid, this is why we want to force argc to have more than 2 "inputs"
+    {
+        printf("Usage: plurality [candidate ...]\n");
+        return 1;
+    }
+
+    // Populate array of candidates
+    candidate_count = argc - 1;
+    if (candidate_count > MAX)
+    {
+        printf("Maximum number of candidates is %i\n", MAX);
+        return 2;
+    }
+    for (int i = 0 ; i < candidate_count ; i++)
+    {
+        candidates[i].name = argv[i + 1];
+        candidates[i].votes = 0;
+    }
+
+    int voter_count = get_int("Number of voters: ");
+
+    // Loop over all voters
+    for (int i = 0; i < voter_count; i++)
+    {
+        string name = get_string("Vote: ");
+
+        // Check for invalid vote
+        if (!vote(name))
+        {
+            printf("Invalid vote.\n");
+        }
+    }
+
+    // Display winner of election
+    print_winner();
+}
+
+// Update vote totals given a new vote
+bool vote(string name)
+{
+    for (int i = 0 ; i < candidate_count ; i++)
+    {
+        if (strcmp(name , candidates[i].name) == 0 )
+        {
+            candidates[i].votes++;
+            return true;
+        }
+    }
+    return false;
+}
+
+// Print the winner (or winners) of the election
+void print_winner(void)
+{
+    int mostVotes = 0; // we will compare mostVotes and
+    // keep "updating" this with the MOST VOTES candidate
+    // then we will print this candidate(s) on the console
+    for (int i = 0 ; i < candidate_count ; i++)
+    {
+        if (candidates[i].votes > mostVotes)
+        {
+            mostVotes = candidates[i].votes;
+        }
+    }
+
+    // Here we will identify which candidates have "mostVotes"
+    for (int i = 0 ; i < candidate_count ; i++)
+    {
+        if(candidates[i].votes == mostVotes)
+        {
+            printf("The winner(s) is/are %s\n", candidates[i].name);
+        }
+    }
+    return;
+}

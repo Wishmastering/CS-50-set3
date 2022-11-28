@@ -1,0 +1,42 @@
+1er Video -> https://youtu.be/v29fk9YdOvU
+
+Determinar cual "sort" es el selection sort, bubble sort, merge sort y linear sort. 
+
+====
+
+NOTAS PARA LOS DISTINTOS ALGORITMOS ->
+
+"merge sort" debe ganar en el RANDOM, sera el mas rapido y tendra un performance MUY SIMILAR EN CUALQUIER TIPO DE GRUPO DE NUMEROS
+
+"bubble sort" debe ganar en el sorted, PORQUE SOLO PASA UNA VEZ Y SE DA CUENTA QUE YA TODO ESTA ORDENADO Y LSITO
+
+"linear sort" no gana en ninguno y sera igual de lento en todos
+
+
+Sort1 Results -> Bubble
+
+Random50000: 0m6.182s
+
+Reversed50000: 0m.6.189s
+
+Sorted50000:  0m.0.599s
+
+===
+Sort2 Results -> MERGE
+
+Random50000: 0m0.658s
+
+Reversed50000: 0m.0.592s
+
+Sorted50000:  0m.0.631s
+
+
+===
+Sort3 Results -> LINEAR SORT
+
+Random50000: 0m3.723
+
+Reversed50000: 0m.3.803s
+
+Sorted50000:  real 0m.3.235s
+
